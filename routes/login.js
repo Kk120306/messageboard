@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-//TODO : add validations 
 
 router.use(express.urlencoded({ extended: true }));
 

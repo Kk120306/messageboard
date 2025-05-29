@@ -3,7 +3,7 @@ const passport = require("passport");
 
 function getLogInForm(req, res) {
     if (req.isUnauthenticated()) {
-        res.render("login-form"); 
+        res.render("log-in-form"); 
     } else {
         res.redirect("/"); 
     }
