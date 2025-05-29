@@ -1,21 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Sign Up</title>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
 </head>
+
 <body>
-  <h1>Sign Up</h1>
-  <form action="/sign-up" method="POST">
-    <label for="first_name">First Name</label>
-    <input id="first_name" name="first_name" placeholder="first name" type="text" />
-    <label for="last_name">Last Name</label>
-    <input id="last_name" name="last_name" placeholder="last name" type="text" />
-    <label for="email">Email</label>
-    <input id="email" name="email" placeholder="email" type="email" />
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <button type="submit">Sign Up</button>
-  </form>
+    <h1>Sign Up</h1>
+    <form action="/sign-up" method="POST">
+
+        <label for="first_name">First Name</label>
+        <input id="first_name" name="first_name" placeholder="first name" type="text" />
+        <span id="first_name_error" <%=errors && errors.find(error=> error.path === 'first_name') ? '' : 'hidden' %>>
+            <% if (errors && errors.find(error=> error.path === 'first_name')) { %>
+                <%= errors.find(error=> error.path === 'first_name').msg %>
+                    <% } %>
+        </span>
+
+        <label for="last_name">Last Name</label>
+        <input id="last_name" name="last_name" placeholder="last name" type="text" />
+        <span id="last_name_error" <%=errors && errors.find(error=> error.path === 'last_name') ? '' : 'hidden' %>>
+            <% if (errors && errors.find(error=> error.path === 'last_name')) { %>
+                <%= errors.find(error=> error.path === 'last_name').msg %>
+                    <% } %>
+        </span>
+
+        <label for="email">Email</label>
+        <input id="email" name="email" placeholder="email" type="email" />
+        <span id="email_error" <%=errors && errors.find(error=> error.path === 'email') ? '' : 'hidden' %>>
+            <% if (errors && errors.find(error=> error.path === 'email')) { %>
+                <%= errors.find(error=> error.path === 'email').msg %>
+                    <% } %>
+        </span>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+        <span id="password_error" <%=errors && errors.find(error=> error.path === 'password') ? '' : 'hidden' %>>
+            <% if (errors && errors.find(error=> error.path === 'password')) { %>
+                <%= errors.find(error=> error.path === 'password').msg %>
+                    <% } %>
+        </span>
+
+        <label for="passwordC">Confirm Password</label>
+        <input id="passwordC" name="passwordC" type="password" />
+        <span id="passwordC_error" <%=errors && errors.find(error=> error.path === 'passwordC') ? '' : 'hidden' %>>
+            <% if (errors && errors.find(error=> error.path === 'passwordC')) { %>
+                <%= errors.find(error=> error.path === 'passwordC').msg %>
+                    <% } %>
+        </span>
+
+        <button type="submit">Sign Up</button>
+    </form>
 </body>
+
 </html>
