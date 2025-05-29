@@ -81,6 +81,17 @@ async function createMessage(id, title, message) {
     }
 }
 
+async function getAllMessagesWithSenderNames() {
+    const result = await pool.query(`
+      SELECT messages.*, users.first_name AS sender_name
+      FROM messages
+      JOIN users ON messages.user_id = users.id
+      ORDER BY messages.timestamp DESC
+    `);
+    return result.rows;  
+  }
+  
+
 
 
 module.exports = {
@@ -88,5 +99,6 @@ module.exports = {
     getUserByEmail,
     modifyMembership,
     getUserById,
-    createMessage
+    createMessage,
+    getAllMessagesWithSenderNames
 };
