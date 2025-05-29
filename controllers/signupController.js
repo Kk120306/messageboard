@@ -8,7 +8,7 @@ function getSignUpForm(req, res) {
             errors: []
         });
     } else {
-        redirect("/");
+        res.redirect("/");
     }
 }
 

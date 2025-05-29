@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Membership Sign Up</title>
+</head>
+
+<body>
+    <h1>Member Sign Up</h1>
+
+    <% if (errors.length> 0) { %>
+        <ul style="color:red;">
+            <% errors.forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+
+
+            <form action="/membership" method="POST">
+
+                <label for="membershipCode">Membership Code:</label>
+                <input name="membershipCode" id="membershipCode" required />
+
+                <button type="submit">Sign Up</button>
+            </form>
+</body>
+
+</html>

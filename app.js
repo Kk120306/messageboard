@@ -5,7 +5,8 @@ const passport = require("./config/passportConfig");
 
 
 const signUpRouter = require('./routes/signup');
-const logInController = require('./routes/login');
+const logInRouter = require('./routes/login');
+const memberRouter = require('./routes/membership');
 
 
 const app = express();
@@ -37,7 +38,8 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => res.render("index", { user: req.user }));
 
 app.use("/sign-up", signUpRouter);
-app.use("/log-in", logInController);
+app.use("/log-in", logInRouter);
+app.use("/membership", memberRouter);
 
 
 app.get("/log-out", (req, res, next) => {
