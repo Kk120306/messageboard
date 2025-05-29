@@ -1,5 +1,3 @@
-#! /usr/bin/env node
-
 const { Client } = require("pg");
 require("dotenv").config();
 
@@ -30,7 +28,10 @@ async function main() {
     console.log("seeding...");
 
     const client = new Client({
-        connectionString: `postgresql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`
+        connectionString: `postgresql://${process.env.DB_USER}:${encodeURIComponent(process.env.DB_PASS)}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+        ssl: {
+            rejectUnauthorized: false
+        }
     });
 
     await client.connect();

@@ -2,6 +2,8 @@ const path = require("node:path");
 const express = require("express");
 const session = require("express-session");
 const passport = require("./config/passportConfig");
+const flash = require("connect-flash");
+
 
 
 const signUpRouter = require('./routes/signup');
@@ -36,8 +38,16 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use((req, res, next) => {
+    console.log("Session:", req.session);
+    console.log("User:", req.user);
+    next();
+  });
+  
+
 
 app.use(express.urlencoded({ extended: false }));
+app.use(flash()); 
 
 app.use("/",indexRouter);
 app.use("/sign-up", signUpRouter);

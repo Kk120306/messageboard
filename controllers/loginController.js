@@ -3,18 +3,21 @@ const passport = require("passport");
 
 function getLogInForm(req, res) {
     if (req.isUnauthenticated()) {
-        res.render("log-in-form"); 
+        res.render("log-in-form");
     } else {
-        res.redirect("/"); 
+        res.redirect("/");
     }
 }
 
 function handleLogin(req, res, next) {
+    console.log("handleLogin invoked");
     passport.authenticate("local", {
-        successRedirect: "/",
-        failureRedirect: "/"
-    })(req, res, next); 
-}
+      successRedirect: "/",
+      failureRedirect: "/log-in",
+      failureFlash: true,
+    })(req, res, next);
+  }
+  
 
 module.exports = {
     getLogInForm,
