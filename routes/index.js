@@ -9,6 +9,6 @@ const indexController = require("../controllers/indexController");
 router.get("/", indexController.getIndex);
 router.get("/edit/:id", indexController.editMessageGet);
 router.post("/edit/:id", validationRules, indexController.editMessagePost);
-// router.post("/delete/:id", indexController.removeMessage);
+router.post("/delete/:id", indexController.deleteMessage);
 
 module.exports = router;

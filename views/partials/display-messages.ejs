@@ -1,17 +1,30 @@
-<% if (messages && messages.length> 0) { %>
+<% if (messages && messages.length > 0) { %>
     <ul>
-        <% messages.forEach(message=> { %>
+        <% messages.forEach(message => { %>
             <li>
-                <strong>
-                    <%= message.title %>
-                </strong><br />
-                <p>
-                    <%= message.body %>
-                </p>
-                <p><em>From: <%= message.sender_name %></em></p>
-                <small>Sent on: <%= message.timestamp.toLocaleString() %></small>
+                <strong><%= message.title %></strong><br />
+                <p><%= message.body %></p>
 
-                <% if (currentUser && (currentUser.id===message.user_id || currentUser.is_admin)) { %>
+                <p>
+                    <em>From: 
+                        <% if (currentUser && currentUser.is_member) { %>
+                            <%= message.sender_name %>
+                        <% } else { %>
+                            ********
+                        <% } %>
+                    </em>
+                </p>
+
+                <small>
+                    Sent on: 
+                    <% if (currentUser && currentUser.is_member) { %>
+                        <%= message.timestamp.toLocaleString() %>
+                    <% } else { %>
+                        ********
+                    <% } %>
+                </small>
+
+                <% if (currentUser && (currentUser.id === message.user_id || currentUser.is_admin)) { %>
                     <form action="/delete/<%= message.id %>" method="POST" style="display:inline;">
                         <button type="submit">Delete</button>
                     </form>
@@ -19,10 +32,10 @@
                     <form action="/edit/<%= message.id %>" method="GET" style="display:inline;">
                         <button type="submit">Edit</button>
                     </form>
-                    <% } %>
+                <% } %>
             </li>
-            <% }) %>
+        <% }) %>
     </ul>
-    <% } else { %>
-        <p>No messages found.</p>
-        <% } %>
+<% } else { %>
+    <p>No messages found.</p>
+<% } %>

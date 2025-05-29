@@ -32,7 +32,7 @@ async function editMessageGet(req, res) {
     }
 }
 
-async function editMessagePost(req, res, next) {
+async function editMessagePost(req, res) {
     const errors = validationResult(req).array();
     const id = req.params.id;
     const msg = await db.findMessageById(id);
@@ -56,9 +56,21 @@ async function editMessagePost(req, res, next) {
     }
 }
 
+async function deleteMessage(req, res) {
+    const id = req.params.id;
+    try {
+        await db.deleteMessageById(id);
+        res.redirect("/");
+    } catch (err) {
+        console.error("Failed to delete message: ", err);
+        throw err;
+    }
+}
+
 
 module.exports = {
     getIndex,
     editMessageGet,
-    editMessagePost
+    editMessagePost,
+    deleteMessage
 }

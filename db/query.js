@@ -108,6 +108,13 @@ async function updateMessage(id, title, body) {
     );
 }
 
+async function deleteMessageById(id) {
+    await pool.query(
+        `DELETE FROM messages WHERE id = $1`,
+        [id]
+    );
+}
+
 
 
 
@@ -119,5 +126,6 @@ module.exports = {
     createMessage,
     getAllMessagesWithSenderDetail,
     findMessageById,
-    updateMessage
+    updateMessage,
+    deleteMessageById
 };
