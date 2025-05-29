@@ -4,11 +4,16 @@ A message board web application where users can sign up, log in, and post messag
 
 ---
 
+🌐 **Live Demo**  
+🔗 [View Deployed Site](https://sorry-ardith-kk120306-222d90c4.koyeb.app/)
+
+---
+
 ## 🔧 Features
 
 - 🔐 User authentication with Passport.js (local strategy)
 - 📝 Authenticated users can create, edit, and delete their own messages
-- 🧑‍🤝‍🧑 Members see sender names and timestamps, others see masked info
+- 🧑‍🤝‍🧑 Members see sender names and timestamps, others see masked info (Code is "chicken")
 - 🧑‍💼 Admin users can edit or delete any message
 - ✅ Server-side form validation with error messages
 - 🎨 Responsive UI styled with Tailwind CSS
