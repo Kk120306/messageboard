@@ -89,9 +89,25 @@ async function getAllMessagesWithSenderDetail() {
       JOIN users ON messages.user_id = users.id
       ORDER BY messages.timestamp DESC
     `);
-    return result.rows;  
-  }
-  
+    return result.rows;
+}
+
+
+async function findMessageById(id) {
+    const result = await pool.query(`
+        SELECT * FROM messages WHERE id = $1`, [id]);
+    return result.rows[0];
+}
+
+async function updateMessage(id, title, body) {
+    await pool.query(
+        `UPDATE messages
+         SET title = $1, body = $2
+         WHERE id = $3`,
+        [title, body, id]
+    );
+}
+
 
 
 
@@ -101,5 +117,7 @@ module.exports = {
     modifyMembership,
     getUserById,
     createMessage,
-    getAllMessagesWithSenderDetail
+    getAllMessagesWithSenderDetail,
+    findMessageById,
+    updateMessage
 };
