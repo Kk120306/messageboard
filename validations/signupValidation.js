@@ -13,7 +13,7 @@ const validationRules = [
     check("last_name")
         .trim()
         .isLength({ min: 2, max: 30 })
-        .withMessage('Last name must be between 2 and 30 characters')
+        .withMessage('Last name must be between 2 and 30 characters!')
         .matches(/^[A-Za-zÀ-ÿ\s'-]+$/)
         .withMessage('Last name can only contain letters, spaces, hyphens, and apostrophes')
     ,
