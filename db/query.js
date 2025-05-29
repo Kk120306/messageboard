@@ -81,9 +81,10 @@ async function createMessage(id, title, message) {
     }
 }
 
-async function getAllMessagesWithSenderNames() {
+async function getAllMessagesWithSenderDetail() {
     const result = await pool.query(`
-      SELECT messages.*, users.first_name AS sender_name
+      SELECT messages.*, users.first_name AS sender_name,
+      users.id AS user_id
       FROM messages
       JOIN users ON messages.user_id = users.id
       ORDER BY messages.timestamp DESC
@@ -100,5 +101,5 @@ module.exports = {
     modifyMembership,
     getUserById,
     createMessage,
-    getAllMessagesWithSenderNames
+    getAllMessagesWithSenderDetail
 };

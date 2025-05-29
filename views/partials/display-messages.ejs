@@ -8,10 +8,18 @@
                 <p>
                     <%= message.body %>
                 </p>
-                <p>
-                    <em>From: <%= message.sender_name %></em>
-                </p>
+                <p><em>From: <%= message.sender_name %></em></p>
                 <small>Sent on: <%= message.timestamp.toLocaleString() %></small>
+
+                <% if (currentUser && (currentUser.id===message.user_id || currentUser.is_admin)) { %>
+                    <form action="/messages/<%= message.id %>/delete" method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+
+                    <form action="/messages/<%= message.id %>/edit" method="GET" style="display:inline;">
+                        <button type="submit">Edit</button>
+                    </form>
+                    <% } %>
             </li>
             <% }) %>
     </ul>

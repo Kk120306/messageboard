@@ -4,7 +4,7 @@ async function getIndex(req, res) {
     if (req.isUnauthenticated()) {
         res.render("log-in-form");
     } else {
-        const messages = await db.getAllMessagesWithSenderNames();
+        const messages = await db.getAllMessagesWithSenderDetail();
         res.render("index", {
             user: req.user,
             messages : messages
