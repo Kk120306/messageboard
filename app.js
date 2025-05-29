@@ -12,8 +12,26 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
+app.use(
+    session({
+        secret: process.env.COOKIE_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 24 * 60 * 60 * 1000,
+        },
+    }),
+);
+
 app.use(passport.session());
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+});
+
+
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => res.render("index", { user: req.user }));
@@ -24,12 +42,12 @@ app.use("/log-in", logInController);
 
 app.get("/log-out", (req, res, next) => {
     req.logout((err) => {
-      if (err) {
-        return next(err);
-      }
-      res.redirect("/");
+        if (err) {
+            return next(err);
+        }
+        res.redirect("/");
     });
-  });
+});
 
 
 app.listen(3000, () => console.log("app listening on port 3000!"));
