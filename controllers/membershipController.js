@@ -1,6 +1,5 @@
 const db = require("../db/query");
 const { validationResult } = require('express-validator');
-const { get } = require("../routes/signup");
 require('dotenv').config();
 
 async function getMembership(req, res) {

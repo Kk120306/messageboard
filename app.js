@@ -7,6 +7,8 @@ const passport = require("./config/passportConfig");
 const signUpRouter = require('./routes/signup');
 const logInRouter = require('./routes/login');
 const memberRouter = require('./routes/membership');
+const messageRouter = require('./routes/messages');
+const indexRouter = require('./routes/index');
 
 
 const app = express();
@@ -25,7 +27,9 @@ app.use(
     }),
 );
 
+app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
@@ -35,11 +39,11 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => res.render("index", { user: req.user }));
-
+app.use("/",indexRouter);
 app.use("/sign-up", signUpRouter);
 app.use("/log-in", logInRouter);
 app.use("/membership", memberRouter);
+app.use("/new-message", messageRouter);
 
 
 app.get("/log-out", (req, res, next) => {

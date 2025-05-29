@@ -63,15 +63,30 @@ async function changeMembership(newStatus, id) {
 
 async function getUserById(id) {
     return await pool.query(
-        `SELECT * FROM users WHERE id = $1`, 
+        `SELECT * FROM users WHERE id = $1`,
         [id]
     )
 }
+
+async function createMessage(id, title, message) {
+    try {
+        await pool.query(
+            `INSERT INTO messages (title, body, timestamp, user_id)
+             VALUES ($1, $2, NOW(), $3)`,
+            [title, message, id]
+        );
+    } catch (err) {
+        console.error("There was an error creating a message: ", err);
+        throw err;
+    }
+}
+
 
 
 module.exports = {
     createUser,
     getUserByEmail,
     modifyMembership,
-    getUserById
+    getUserById,
+    createMessage
 };

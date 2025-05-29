@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Send a Message</title>
+</head>
+
+<body>
+    <h1>Send a Message</h1>
+    <form action="/new-message" method="POST">
+        <div>
+            <label for="title">Title:</label><br />
+            <input type="text" id="title" name="title" required>
+            <span style="color: red;" <%= errors?.find(e => e.path === 'title') ? '' : 'hidden' %>>
+                <%= errors?.find(e => e.path === 'title')?.msg %>
+            </span>
+        </div>
+
+        <div>
+            <label for="message">Message:</label><br />
+            <textarea id="message" name="message" rows="5" cols="30" required></textarea>
+            <span style="color: red;" <%= errors?.find(e => e.path === 'message') ? '' : 'hidden' %>>
+                <%= errors?.find(e => e.path === 'message')?.msg %>
+            </span>
+        </div>
+
+        <button type="submit">Send</button>
+    </form>
+</body>
+
+</html>
