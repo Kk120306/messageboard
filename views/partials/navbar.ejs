@@ -1,0 +1,16 @@
+<nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
+    <div class="text-xl font-semibold text-gray-800">
+        MessageBoard
+    </div>
+    <div class="space-x-4 text-sm">
+        <% if (user) { %>
+            <span class="text-gray-700">Hi, <%= user.first_name %></span>
+            <a href="/new-message" class="text-black-500 hover:underline">New Message</a>
+            <a href="/membership" class="text-black-500 hover:underline">Become Member</a>
+            <a href="/log-out" class="text-red-500 hover:underline">Log out</a>
+            <% } else { %>
+                <a href="/log-in" class="text-blue-500 hover:underline">Log in</a>
+                <a href="/sign-up" class="text-blue-500 hover:underline">Sign up</a>
+                <% } %>
+    </div>
+</nav>

@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Log In</title>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>WELCOME BACK <%= user.first_name %></h1>
-    <p>Is Member: <%= user.is_member %></p>
-    <p>Is Admin: <%= user.is_admin %></p>
-    <a href="/log-out">LOG OUT</a>
-    <%- include('partials/display-messages.ejs') %>
+
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <%- include('partials/navbar.ejs', { user }) %>
+
+        <main class="max-w-4xl mx-auto mt-10 px-6">
+            <h1 class="text-3xl font-bold mb-2">Welcome back, <%= user.first_name %> 👋</h1>
+
+            <div class="mb-6 text-sm text-gray-600">
+                <p><strong>Member:</strong>
+                    <%= user.is_member ? "✅" : "❌" %>
+                </p>
+                <p><strong>Admin:</strong>
+                    <%= user.is_admin ? "✅" : "❌" %>
+                </p>
+            </div>
+
+            <section class="bg-white shadow rounded-lg p-6">
+                <%- include('partials/display-messages.ejs', { currentUser: user }) %>
+            </section>
+        </main>
 </body>
+
 </html>
