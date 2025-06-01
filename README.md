@@ -5,7 +5,7 @@ A message board web application where users can sign up, log in, and post messag
 ---
 
 🌐 **Live Demo**  
-🔗 [View Deployed Site](https://sorry-ardith-kk120306-222d90c4.koyeb.app/)
+🔗 [View Deployed Site](https://sorry-ardith-kk120306-222d90c4.koyeb.app/) - Database currently offline due to payment required
 
 ---
 
